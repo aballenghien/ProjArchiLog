@@ -1,3 +1,5 @@
+package M2;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -7,6 +9,6 @@
  *
  * @author Audrey
  */
-public class Port extends Sortie {
+public class Service extends Sortie{
     
 }
