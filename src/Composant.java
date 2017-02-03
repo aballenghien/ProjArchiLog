@@ -7,7 +7,7 @@
  *
  * @author Audrey
  */
-public class Composant {
+public class Composant extends ElementArchitectural{
     Contrainte ctr;
     Propriete prt;
     

@@ -9,12 +9,21 @@
  */
 public class Sortie {
     Interface inter;
+    Liaison liaison;
     
     public Sortie(){
         
     }
+    
+    public Liaison getLiaison() {
+		return liaison;
+	}
 
-    public Interface getInter() {
+	public void setLiaison(Liaison liaison) {
+		this.liaison = liaison;
+	}
+
+	public Interface getInter() {
         return inter;
     }
 

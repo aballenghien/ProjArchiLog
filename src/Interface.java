@@ -12,12 +12,23 @@ import java.util.List;
  */
 public class Interface {
     List<Sortie> lstSorties;
+    ElementArchitectural element;
     
     public Interface(){
         
     }
+    
+    
 
-    public List<Sortie> getLstSorties() {
+    public ElementArchitectural getElement() {
+		return element;
+	}
+
+	public void setElement(ElementArchitectural element) {
+		this.element = element;
+	}
+
+	public List<Sortie> getLstSorties() {
         return lstSorties;
     }
 
