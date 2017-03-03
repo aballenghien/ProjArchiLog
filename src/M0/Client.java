@@ -12,12 +12,12 @@ import java.util.ArrayList;
  * @author Audrey
  */
 public class Client extends Composant{
-    public Client(Propriete visualisation, Propriete codeSource, Propriete performance, Port sortieClient){
-        super(null,sortieClient);
+    public Client(Propriete visualisation, Propriete codeSource, Propriete performance, Port sendRequest){        
         super.lstPriorites = new ArrayList<>();
         super.lstPriorites.add(visualisation);
         super.lstPriorites.add(codeSource);
         super.lstPriorites.add(performance);
+        super.configuration = SystemCS.getInstance();
     }
     
 }

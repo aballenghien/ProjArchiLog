@@ -8,7 +8,7 @@ package M0;
  *
  * @author Audrey
  */
-public class Serveur {
-    Port entree;
+public class Serveur extends Composant{
+    
     
 }
