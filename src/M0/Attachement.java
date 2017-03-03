@@ -9,6 +9,7 @@ import M2.Sortie;
 public class Attachement extends Liaison{
     private Port port;
     private Role role;
+    private String nom;
 
     public Attachement(Port port, Role role) {
         this.port = port;

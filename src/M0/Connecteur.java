@@ -9,6 +9,7 @@ public class Connecteur extends ElementArchitectural{
 	private Glue laGlue;
         private Role entree;
         private Role sortie; 
+        private String nom;
 	
 	
 

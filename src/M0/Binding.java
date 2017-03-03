@@ -10,6 +10,7 @@ public class Binding extends Liaison{
     
     private Port entree;
     private Port sortie;
+    private String nom;
 
     public Binding(Port entree, Port sortie) {
         this.entree = entree;
