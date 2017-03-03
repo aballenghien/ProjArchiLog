@@ -3,7 +3,6 @@ package M0;
 
 import M0.Propriete;
 import M2.Contrainte;
-import M2.ElementArchitectural;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -24,7 +24,6 @@ public class Client extends Composant{
         super.lstPriorites.add(codeSource);
         super.lstPriorites.add(performance);
         super.lstPorts.add(sendRequest);
-        super.configuration = SystemCS.getInstance();
     }
     
 }

@@ -6,7 +6,6 @@ package M0;
 
 import M0.client.Client;
 import M0.serveur.Serveur;
-import M2.Configuration;
 
 /**
  *
@@ -18,17 +17,18 @@ public class SystemCS extends Composant{
     private Serveur serveur;
     
     
-    public static SystemCS getInstance(){
-        if(systemCS == null){
-            systemCS = new SystemCS();
-        }
-        return systemCS;
-    }
-    
-    private SystemCS(){
-        super();
+    public SystemCS (Client unClient, Serveur unServeur){
+        this.client=unClient;
+        this.serveur=unServeur;
+        this.lstComposants.add(client);
+        this.lstComposants.add(serveur);
     }
 
+
+    public void initConfiguration(){
+        this.client.setConfiguration(this);
+        this.serveur.setConfiguration(this);
+    }
 
     public Client getClient() {
         return client;
@@ -36,7 +36,6 @@ public class SystemCS extends Composant{
 
     public void setClient(Client client) {
         this.client = client;
-        this.lstComposants.add(client);
     }
 
     public Serveur getServeur() {
@@ -45,7 +44,6 @@ public class SystemCS extends Composant{
 
     public void setServeur(Serveur serveur) {
         this.serveur = serveur;
-        this.lstComposants.add(serveur);
     }
 
     public Composant getConfiguration() {

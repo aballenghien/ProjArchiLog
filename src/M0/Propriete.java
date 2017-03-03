@@ -9,6 +9,6 @@ package M0;
  *
  * @author Audrey
  */
-public abstract class Propriete {
+public class Propriete {
     
 }

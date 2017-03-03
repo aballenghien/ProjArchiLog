@@ -1,7 +1,6 @@
 package M0;
 
 import M0.Attachement;
-import M2.Sortie;
 
 /*
  * To change this template, choose Tools | Templates

@@ -15,10 +15,10 @@ import M0.SystemCS;
 public class Serveur extends Composant{
     
     ConnectionManager connectionManager;
-    SecurityManager securityManager;
+    SecurityManagerProjet securityManager;
     Database database;
 
-    public Serveur(ConnectionManager connectionManager, SecurityManager securityManager, Database database, Port receiveRequest) {
+    public Serveur(ConnectionManager connectionManager, SecurityManagerProjet securityManager, Database database, Port receiveRequest) {
         this.connectionManager = connectionManager;
         this.securityManager = securityManager;
         this.database = database;
@@ -26,7 +26,6 @@ public class Serveur extends Composant{
         this.lstComposants.add (this.securityManager);
         this.lstComposants.add (this.database);
         this.lstPorts.add(receiveRequest);
-        super.configuration = SystemCS.getInstance();
     }
     
     public void initConfiguration(){

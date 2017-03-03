@@ -1,6 +1,4 @@
-package M2;
-
-import M0.Sortie;
+package M0;
 
 /*
  * To change this template, choose Tools | Templates
@@ -11,6 +9,11 @@ import M0.Sortie;
  *
  * @author Audrey
  */
-public class Service extends Sortie{
+public abstract class Sortie {
+    
+    public Sortie(){
+        
+    }   
+
     
 }

@@ -12,9 +12,9 @@ import M0.Port;
  *
  * @author E101746T
  */
-public class SecurityManager extends Composant {
+public class SecurityManagerProjet extends Composant {
     
-    public SecurityManager(Port cQuery, Port securityAut) {
+    public SecurityManagerProjet(Port cQuery, Port securityAut) {
         this.lstPorts.add(cQuery);
         this.lstPorts.add(securityAut);
     }
