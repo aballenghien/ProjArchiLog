@@ -4,11 +4,13 @@
  */
 package M0;
 
+import M0.client.Client;
+import M0.serveur.Serveur;
 import M2.Configuration;
 
 /**
  *
- * @author Audrey
+ * @author Audrey, Bertrand
  */
 public class SystemCS extends Composant{
     static SystemCS systemCS = null;

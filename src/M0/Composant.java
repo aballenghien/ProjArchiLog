@@ -19,13 +19,13 @@ import java.util.List;
 public abstract class Composant {
     protected List<Contrainte> lstContraintes;
     protected List<Propriete> lstPriorites;
-    protected Port entree;
-    protected Port sortie;
+    protected List<Port> lstPorts;
     protected Composant configuration;
     protected List<Composant> lstComposants;
     
     public Composant (){
-        lstComposants = new ArrayList<>();
+        this.lstComposants = new ArrayList<>();
+        this.lstPorts = new ArrayList<>();
     }
 
     public List<Contrainte> getLstContraintes() {
@@ -44,20 +44,12 @@ public abstract class Composant {
         this.lstPriorites = lstPriorites;
     }
 
-    public Port getEntree() {
-        return entree;
+    public List<Port> getLstPorts() {
+        return lstPorts;
     }
 
-    public void setEntree(Port entree) {
-        this.entree = entree;
-    }
-
-    public Port getSortie() {
-        return sortie;
-    }
-
-    public void setSortie(Port sortie) {
-        this.sortie = sortie;
+    public void setLstPorts(List<Port> lstPorts) {
+        this.lstPorts = lstPorts;
     }
 
     public List<Composant> getLstComposants() {
@@ -67,6 +59,15 @@ public abstract class Composant {
     public void setLstComposants(List<Composant> lstComposants) {
         this.lstComposants = lstComposants;
     }
+
+    public Composant getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(Composant configuration) {
+        this.configuration = configuration;
+    }
+    
     
     
 
