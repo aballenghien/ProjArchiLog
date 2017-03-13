@@ -1,14 +1,14 @@
-package M2;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+package M0;
 
 /**
  *
  * @author Audrey
  */
-public abstract class Contrainte {
+public interface Observateur {
     
+    public void actualiser(Observable o);
 }

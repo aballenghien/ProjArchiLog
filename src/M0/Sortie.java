@@ -11,9 +11,20 @@ package M0;
  */
 public abstract class Sortie {
     
-    public Sortie(){
-        
+    private String nom;
+    public Sortie(String nom){
+        this.nom = nom;
     }   
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    
+    
 
     
 }

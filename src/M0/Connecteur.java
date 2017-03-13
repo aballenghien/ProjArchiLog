@@ -1,17 +1,20 @@
 package M0;
 
 import M2.Glue;
+import java.util.ArrayList;
 
 
-public class Connecteur{
+public class Connecteur extends ElementArchitectural implements Observable{
 	
 	private Glue laGlue;
         private Role entree;
         private Role sortie; 
-        private String nom;
 
-    public Connecteur( String nom) {
-        this.nom = nom;
+    public Connecteur(String nom) {
+        super(nom);
+        this.setLstSorties(new ArrayList<Sortie>());
+        this.getLstSorties().add(this.entree);
+        this.getLstSorties().add(this.sortie);
     }
 
     public Glue getLaGlue() {
@@ -28,6 +31,7 @@ public class Connecteur{
 
     public void setEntree(Role entree) {
         this.entree = entree;
+        
     }
 
     public Role getSortie() {
@@ -38,12 +42,19 @@ public class Connecteur{
         this.sortie = sortie;
     }
 
-    public String getNom() {
-        return nom;
+    public void transmettreMessage(Message message){
+        this.setReponse(null);
+        this.setMessage(message);
+        this.notififerObservateur();
+    }
+    @Override
+    public void DeterminerObservateur(Observateur o) {
+        this.setConfiguration(o);
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    @Override
+    public void notififerObservateur() {
+        this.getConfiguration().actualiser(this);
     }
         
     

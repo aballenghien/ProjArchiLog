@@ -13,9 +13,12 @@ import M0.Attachement;
  */
 public class Role extends Sortie{
     private Attachement attch;
+    private Connecteur connect;
 
-    public Role(Attachement attch) {
+    public Role(Attachement attch,Connecteur connect, String nom) {
+        super(nom);
         this.attch = attch;
+        this.connect = connect;
     }   
     
 
@@ -26,6 +29,16 @@ public class Role extends Sortie{
     public void setAttch(Attachement attch) {
         this.attch = attch;
     }
+
+    public Connecteur getConnect() {
+        return connect;
+    }
+
+    public void setConnect(Connecteur connect) {
+        this.connect = connect;
+    }
+    
+    
     
     
     

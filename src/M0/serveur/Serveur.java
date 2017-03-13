@@ -5,6 +5,9 @@
 package M0.serveur;
 
 import M0.Composant;
+import M0.Configuration;
+import M0.Observable;
+import M0.Observateur;
 import M0.Port;
 import M0.SystemCS;
 
@@ -12,26 +15,76 @@ import M0.SystemCS;
  *
  * @author Audrey
  */
-public class Serveur extends Composant{
+public class Serveur extends Configuration{
     
-    ConnectionManager connectionManager;
-    SecurityManagerProjet securityManager;
-    Database database;
+    private ConnectionManager connectionManager;
+    private SecurityManagerProjet securityManager;
+    private Database database;
+    private Port receiveRequest;
+    private Port internalServeur;
+    
 
-    public Serveur(ConnectionManager connectionManager, SecurityManagerProjet securityManager, Database database, Port receiveRequest) {
+    public Serveur(ConnectionManager connectionManager, SecurityManagerProjet securityManager, Database database, Port receiveRequest, Port internalServeur, String nom) {
+        super(nom);
         this.connectionManager = connectionManager;
         this.securityManager = securityManager;
         this.database = database;
-        this.lstComposants.add (this.connectionManager);
-        this.lstComposants.add (this.securityManager);
-        this.lstComposants.add (this.database);
-        this.lstPorts.add(receiveRequest);
+        this.getLstElementsArchitecturaux().add (this.connectionManager);
+        this.getLstElementsArchitecturaux().add (this.securityManager);
+        this.getLstElementsArchitecturaux().add (this.database);
+        this.receiveRequest = receiveRequest;
+        this.internalServeur = internalServeur;
+        this.getLstSorties().add(this.receiveRequest);
+        this.getLstSorties().add(this.internalServeur);
+    }   
+
+    public ConnectionManager getConnectionManager() {
+        return connectionManager;
     }
+
+    public void setConnectionManager(ConnectionManager connectionManager) {
+        this.connectionManager = connectionManager;
+    }
+
+    public SecurityManagerProjet getSecurityManager() {
+        return securityManager;
+    }
+
+    public void setSecurityManager(SecurityManagerProjet securityManager) {
+        this.securityManager = securityManager;
+    }
+
+    public Database getDatabase() {
+        return database;
+    }
+
+    public void setDatabase(Database database) {
+        this.database = database;
+    }
+
+    public Port getReceiveRequest() {
+        return receiveRequest;
+    }
+
+    public void setReceiveRequest(Port receiveRequest) {
+        this.receiveRequest = receiveRequest;
+    }
+
+    public Port getInternalServeur() {
+        return internalServeur;
+    }
+
+    public void setInternalServeur(Port internalServeur) {
+        this.internalServeur = internalServeur;
+    }
+
     
-    public void initConfiguration(){
-        this.connectionManager.setConfiguration(this);
-        this.securityManager.setConfiguration(this);
-        this.database.setConfiguration(this);
+    
+    @Override
+    public void actualiser(Observable o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
     
 }

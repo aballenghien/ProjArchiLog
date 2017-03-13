@@ -2,16 +2,16 @@ package M0;
 
 
 import M0.Port;
-import M2.Liaison;
 
 
 public class Attachement extends Liaison{
     private Port port;
     private Role role;
-    private String nom;
 
     public Attachement(String nom) {
-        this.nom = nom;
+        super(nom);
+        this.getLstSorties().add(this.port);
+        this.getLstSorties().add(this.role);
     }
     
     
@@ -31,6 +31,7 @@ public class Attachement extends Liaison{
     public void setRole(Role role) {
         this.role = role;
     }
+
 	
     
 

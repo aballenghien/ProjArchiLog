@@ -6,6 +6,8 @@
 package M0.serveur;
 
 import M0.Composant;
+import M0.Observable;
+import M0.Observateur;
 import M0.Port;
 
 /**
@@ -14,9 +16,17 @@ import M0.Port;
  */
 public class Database extends Composant {
     
-    public Database(Port queryInt, Port securityManagement) {
-        this.lstPorts.add(queryInt);
-        this.lstPorts.add(securityManagement);
+    private Port queryInt;
+    private Port securityManagement;
+    
+    public Database(Port queryInt, Port securityManagement, String nom) {
+        super(nom);
+        this.queryInt = queryInt;
+        this.securityManagement = securityManagement;
+        this.getLstSorties().add(this.queryInt);
+        this.getLstSorties().add(this.securityManagement);
+        
     }
+
     
 }

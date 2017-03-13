@@ -1,8 +1,6 @@
 package M0;
 
 
-import M0.Propriete;
-import M2.Contrainte;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,16 +13,14 @@ import java.util.List;
  *
  * @author Audrey
  */
-public abstract class Composant {
-    protected List<Contrainte> lstContraintes;
-    protected List<Propriete> lstPriorites;
-    protected List<Port> lstPorts;
-    protected Composant configuration;
-    protected List<Composant> lstComposants;
+public abstract class Composant extends ElementArchitectural implements Observable{
+    private List<Contrainte> lstContraintes;
+    private List<Propriete> lstProprietes;
     
-    public Composant (){
-        this.lstComposants = new ArrayList<>();
-        this.lstPorts = new ArrayList<>();
+    public Composant (String nom){
+        super(nom);
+        this.lstProprietes = new ArrayList<>();
+        this.lstContraintes = new ArrayList<>();
     }
 
     public List<Contrainte> getLstContraintes() {
@@ -35,37 +31,37 @@ public abstract class Composant {
         this.lstContraintes = lstContraintes;
     }
 
-    public List<Propriete> getLstPriorites() {
-        return lstPriorites;
+    public List<Propriete> getLstProprietes() {
+        return lstProprietes;
     }
 
-    public void setLstPriorites(List<Propriete> lstPriorites) {
-        this.lstPriorites = lstPriorites;
+    public void setLstProprietes(List<Propriete> lstProprietes) {
+        this.lstProprietes = lstProprietes;
+    }
+    @Override
+    public void setMessage(Message message){
+        this.setMessage(message);
+        this.notififerObservateur();
+    }
+    
+     @Override
+    public void setReponse(Reponse reponse){
+        this.setReponse(reponse);
+        this.notififerObservateur();
     }
 
-    public List<Port> getLstPorts() {
-        return lstPorts;
+    @Override
+    public void DeterminerObservateur(Observateur o) {
+        this.setConfiguration(o);
+        
     }
 
-    public void setLstPorts(List<Port> lstPorts) {
-        this.lstPorts = lstPorts;
+    @Override
+    public void notififerObservateur() {
+        this.getConfiguration().actualiser(this);
     }
 
-    public List<Composant> getLstComposants() {
-        return lstComposants;
-    }
-
-    public void setLstComposants(List<Composant> lstComposants) {
-        this.lstComposants = lstComposants;
-    }
-
-    public Composant getConfiguration() {
-        return configuration;
-    }
-
-    public void setConfiguration(Composant configuration) {
-        this.configuration = configuration;
-    }
+    
     
     
     

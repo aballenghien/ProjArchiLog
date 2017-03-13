@@ -6,17 +6,27 @@
 package M0.serveur;
 
 import M0.Composant;
+import M0.Observable;
+import M0.Observateur;
 import M0.Port;
 
 /**
  *
  * @author E101746T
  */
-public class SecurityManagerProjet extends Composant {
+public class SecurityManagerProjet extends Composant{
     
-    public SecurityManagerProjet(Port cQuery, Port securityAut) {
-        this.lstPorts.add(cQuery);
-        this.lstPorts.add(securityAut);
+    private Port cQuery;
+    private Port securityAut;
+  
+    public SecurityManagerProjet(Port cQuery, Port securityAut, String nom) {
+        super(nom);
+        this.cQuery = cQuery;
+        this.securityAut = securityAut;
+        this.getLstSorties().add(this.cQuery);
+        this.getLstSorties().add(this.securityAut);
     }
+
+
     
 }

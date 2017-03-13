@@ -2,17 +2,19 @@ package M0;
 
 
 import M0.Port;
-import M2.Liaison;
 
 
 public class Binding extends Liaison{
     
     private Port entree;
     private Port sortie;
-    private String nom;
 
-    public Binding(String nom) {
-        this.nom = nom;
+    public Binding(String nom, Port entree, Port sortie) {
+        super(nom);
+        this.entree = entree;
+        this.sortie = sortie;
+        this.getLstSorties().add(this.entree);
+        this.getLstSorties().add(this.sortie);
     }
 
     public Port getEntree() {
@@ -31,13 +33,7 @@ public class Binding extends Liaison{
         this.sortie = sortie;
     }
 
-    public String getNom() {
-        return nom;
-    }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
     
     
     

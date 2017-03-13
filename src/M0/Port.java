@@ -12,8 +12,10 @@ package M0;
 public  class Port extends Sortie {
     private Binding bind;
     private Attachement attch;
+    private ElementArchitectural compo;
 
-    public Port(Binding bind, Attachement attch) {
+    public Port(Binding bind, Attachement attch,String nom) {        
+        super(nom);
         this.bind = bind;
         this.attch = attch;
     }  
@@ -34,6 +36,16 @@ public  class Port extends Sortie {
     public void setAttch(Attachement attch) {
         this.attch = attch;
     }
+
+    public ElementArchitectural getCompo() {
+        return compo;
+    }
+
+    public void setCompo(ElementArchitectural compo) {
+        this.compo = compo;
+    }
+    
+    
     
     
     
