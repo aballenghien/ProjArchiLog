@@ -11,21 +11,26 @@ import java.util.ArrayList;
  * @author Audrey
  */
 public class Reponse extends Message{
-    private ArrayList<Object> contenuReponse;
+    private String[][] colonneValeur;
 
-    public Reponse(int id, String objet, String contenu) {
-        super(id, objet, contenu);
-        this.contenuReponse = new ArrayList<>();
-    } 
-    
-    public ArrayList<Object> getContenuReponse() {
-        return contenuReponse;
-    }
-
-    public void setContenuReponse(ArrayList<Object> contenuReponse) {
-        this.contenuReponse = contenuReponse;
+    public Reponse( String user, String mdp, Requete requete) {
+        super(user, mdp, requete);
+        this.colonneValeur = colonneValeur;
     }
     
+    
+
+    public String[][] getColonneValeur() {
+        return colonneValeur;
+    }
+
+    public void setColonneValeur(String[][] colonneValeur) {
+        this.colonneValeur = colonneValeur;
+    }
+    
+    
+
+   
     
     
 }

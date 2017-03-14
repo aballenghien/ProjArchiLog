@@ -27,6 +27,24 @@ public class SecurityManagerProjet extends Composant{
         this.getLstSorties().add(this.securityAut);
     }
 
+    public Port getcQuery() {
+        return cQuery;
+    }
+
+    public void setcQuery(Port cQuery) {
+        this.cQuery = cQuery;
+    }
+
+    public Port getSecurityAut() {
+        return securityAut;
+    }
+
+    public void setSecurityAut(Port securityAut) {
+        this.securityAut = securityAut;
+    }
+    
+    
+
 
     
 }

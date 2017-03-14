@@ -6,6 +6,7 @@ package M0;
 
 import M0.client.Client;
 import M0.serveur.ConnectionManager;
+import M0.serveur.SecurityManagerProjet;
 import M0.serveur.Serveur;
 
 /**
@@ -67,9 +68,7 @@ public class SystemCS extends Configuration implements Observateur{
             Message mess = serv.getMessage();
             if(resp == null){
                 ConnectionManager cm = (ConnectionManager)serv.getInternalServeur().getBind().getSortie().getCompo();
-//                if(cm.authentifier()){
-//                    cm.requeteBDD(mess);
-//                }
+                boolean ok = cm.analyserMessage(mess); 
                 
             }else{
                 serv.getReceiveRequest().getAttch().getRole().getConnect().setReponse(resp);
@@ -77,10 +76,48 @@ public class SystemCS extends Configuration implements Observateur{
         }
         
         if(o instanceof ConnectionManager){
-            
+            ConnectionManager cm = (ConnectionManager)o;
+            if(cm.getMessage().isAuthentifie()){
+                if(cm.getReponse().getColonneValeur().length == 0){
+                    cm.getDbQuery().getAttch().getRole().getConnect().setMessage(cm.getMessage());
+                }else{
+                    cm.getExternalSocket().getBind().getEntree().getCompo().setReponse(cm.getReponse());
+                }
+            }else{
+                cm.getSecurityCheck().getAttch().getRole().getConnect().setMessage(getMessage());
+            }
         }
         
+        if(o instanceof SecurityManagerProjet){
+            SecurityManagerProjet security = (SecurityManagerProjet) o;
+            Message messageRecu = security.getMessage();
+            Reponse resp = security.getReponse();
+            if(!messageRecu.isAuthentifie()){
+                if(security.getReponse() == null){
+                    Requete req = new Requete();
+                    req.setTable("user");
+                    req.addColonne("mdp");
+                    req.addCondition("nom="+messageRecu.getUser());
+                    Message messageAuthentification = new Message("root", "root", req);
+                    security.getcQuery().getAttch().getRole().getConnect().setMessage(messageAuthentification);
+                }else{
+                    if(resp.getColonneValeur()[0][0].equals(messageRecu.getMdp())){
+                        messageRecu.setAuthentifie(true);
+                        security.getSecurityAut().getAttch().getRole().getConnect().setMessage(messageRecu);
+                        Reponse rep = new Reponse(messageRecu.getUser(), messageRecu.getMdp(), messageRecu.getRequete());
+                        rep.setAuthentifie(true);
+                        security.getSecurityAut().getAttch().getRole().getConnect().setReponse(rep);
+                    }else{
+                        System.out.println("Erreur lors de l'authentification");
+                    }
+                }
+            }else{
+                System.out.println("L'authentification a déjà été faite pour cette requête");
+            }
+        }
     }
+        
+    
 
 
     
