@@ -11,7 +11,13 @@ public class Main_project {
 
 	public static void main(String[] args) {
 		SystemCS sys = construireLeSystem();
-                
+                Requete req = new Requete();
+                req.setTable("t1");
+                req.addColonne("c1");
+                req.addCondition("c2=v22");
+                Message mes = new Message("audrey","audrey",req);
+                Reponse rep = sys.getClient().EnvoyerUneRequete(mes);
+                System.out.println(rep.toString());
                 
 	}
         

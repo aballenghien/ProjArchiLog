@@ -43,7 +43,6 @@ public class Connecteur extends ElementArchitectural implements Observable{
     }
 
     public void transmettreMessage(Message message){
-        this.setReponse(null);
         this.setMessage(message);
         this.notififerObservateur();
     }

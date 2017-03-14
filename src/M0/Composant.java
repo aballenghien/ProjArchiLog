@@ -40,13 +40,13 @@ public abstract class Composant extends ElementArchitectural implements Observab
     }
     @Override
     public void setMessage(Message message){
-        this.setMessage(message);
+        super.setMessage(message);
         this.notififerObservateur();
     }
     
      @Override
     public void setReponse(Reponse reponse){
-        this.setReponse(reponse);
+        super.setReponse(reponse);
         this.notififerObservateur();
     }
 

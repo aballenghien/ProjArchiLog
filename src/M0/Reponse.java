@@ -15,7 +15,7 @@ public class Reponse extends Message{
 
     public Reponse( String user, String mdp, Requete requete) {
         super(user, mdp, requete);
-        this.colonneValeur = colonneValeur;
+        this.colonneValeur = new String [0][0];
     }
     
     
@@ -27,6 +27,13 @@ public class Reponse extends Message{
     public void setColonneValeur(String[][] colonneValeur) {
         this.colonneValeur = colonneValeur;
     }
+
+    @Override
+    public String toString() {
+        return "Reponse{" + "colonneValeur=" + colonneValeur[0][0]+"}";
+    }
+    
+    
     
     
 

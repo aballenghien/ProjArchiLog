@@ -14,7 +14,7 @@ public class ElementArchitectural {
     private ArrayList<Sortie> lstSorties;
     private Observateur configuration;
     private Message message;
-    private Reponse reponse;
+    protected Reponse reponse;
     private String nom;
 
     public ElementArchitectural(String nom) {

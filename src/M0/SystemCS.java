@@ -6,8 +6,10 @@ package M0;
 
 import M0.client.Client;
 import M0.serveur.ConnectionManager;
+import M0.serveur.Database;
 import M0.serveur.SecurityManagerProjet;
 import M0.serveur.Serveur;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,6 +25,7 @@ public class SystemCS extends Configuration implements Observateur{
         super(nom);
         this.client=unClient;
         this.serveur=unServeur;
+        this.setLstElementsArchitecturaux(new ArrayList<ElementArchitectural>());
         this.getLstElementsArchitecturaux().add(client);
         this.getLstElementsArchitecturaux().add(serveur);
     }
@@ -50,8 +53,12 @@ public class SystemCS extends Configuration implements Observateur{
     public void actualiser(Observable o) {
         if(o instanceof Client){
             Client cl = (Client) o;
-            Message message  = cl.getMessage();
-            cl.getSendRequest().getAttch().getRole().getConnect().transmettreMessage(message);
+            Message mes = cl.getMessage();
+            Reponse resp = cl.getReponse();
+            if(resp == null){
+                cl.getSendRequest().getAttch().getRole().getConnect().setMessage(mes);
+                cl.getSendRequest().getAttch().getRole().getConnect().notififerObservateur();
+            }
         }
         if(o instanceof Connecteur){
             Connecteur connect = (Connecteur) o;
@@ -72,47 +79,7 @@ public class SystemCS extends Configuration implements Observateur{
                 
             }else{
                 serv.getReceiveRequest().getAttch().getRole().getConnect().setReponse(resp);
-            }
-        }
-        
-        if(o instanceof ConnectionManager){
-            ConnectionManager cm = (ConnectionManager)o;
-            if(cm.getMessage().isAuthentifie()){
-                if(cm.getReponse().getColonneValeur().length == 0){
-                    cm.getDbQuery().getAttch().getRole().getConnect().setMessage(cm.getMessage());
-                }else{
-                    cm.getExternalSocket().getBind().getEntree().getCompo().setReponse(cm.getReponse());
-                }
-            }else{
-                cm.getSecurityCheck().getAttch().getRole().getConnect().setMessage(getMessage());
-            }
-        }
-        
-        if(o instanceof SecurityManagerProjet){
-            SecurityManagerProjet security = (SecurityManagerProjet) o;
-            Message messageRecu = security.getMessage();
-            Reponse resp = security.getReponse();
-            if(!messageRecu.isAuthentifie()){
-                if(security.getReponse() == null){
-                    Requete req = new Requete();
-                    req.setTable("user");
-                    req.addColonne("mdp");
-                    req.addCondition("nom="+messageRecu.getUser());
-                    Message messageAuthentification = new Message("root", "root", req);
-                    security.getcQuery().getAttch().getRole().getConnect().setMessage(messageAuthentification);
-                }else{
-                    if(resp.getColonneValeur()[0][0].equals(messageRecu.getMdp())){
-                        messageRecu.setAuthentifie(true);
-                        security.getSecurityAut().getAttch().getRole().getConnect().setMessage(messageRecu);
-                        Reponse rep = new Reponse(messageRecu.getUser(), messageRecu.getMdp(), messageRecu.getRequete());
-                        rep.setAuthentifie(true);
-                        security.getSecurityAut().getAttch().getRole().getConnect().setReponse(rep);
-                    }else{
-                        System.out.println("Erreur lors de l'authentification");
-                    }
-                }
-            }else{
-                System.out.println("L'authentification a déjà été faite pour cette requête");
+                serv.getReceiveRequest().getAttch().getRole().getConnect().notififerObservateur();
             }
         }
     }

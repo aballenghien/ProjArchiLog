@@ -27,7 +27,7 @@ public abstract class Configuration extends ElementArchitectural implements Obse
 
     @Override
     public void setMessage(Message message){
-        this.setMessage(message);
+        super.setMessage(message);
         if(!((Configuration)this.getConfiguration()).getNom().equals("")){            
             this.notififerObservateur();
         }
@@ -35,7 +35,7 @@ public abstract class Configuration extends ElementArchitectural implements Obse
     
     @Override
     public void setReponse(Reponse reponse){
-        this.setReponse(reponse);
+        super.setReponse(reponse);
         if(!((Configuration)this.getConfiguration()).getNom().equals("")){            
             this.notififerObservateur();
         }
