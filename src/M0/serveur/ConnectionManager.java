@@ -6,20 +6,34 @@
 package M0.serveur;
 
 import M0.Composant;
-import M0.Message;
-import M0.Observable;
-import M0.Observateur;
+import M0.communication.Message;
+import M0.communication.Observable;
+import M0.communication.Observateur;
 import M0.Port;
 
 /**
- *
- * @author E101746T
+ * Connection manager est un composant particulier dont la configuration est le serveur
+ * Il communique avec le composant StrategyManager pour authentifier le message reçu
+ * et communique avec la base de données pour traiter la requête contenu dans le message et récupérer une réponse
+ * Il est associé à 3 port:
+ * - ExternalSocket permet de communiquer avec la configuration
+ * - SecurityCheck permet de communiquer avec le SecurityManager
+ * - dbQuery permet de communiquer avec la base de données
+ * @author Audrey, Bertrand
  */
 public class ConnectionManager extends Composant{
 
     private Port externalSocket;
     private Port securityCheck;
     private Port dbQuery;
+    
+    /**
+     * 
+     * @param externalSocket (Port)
+     * @param securityCheck (Port)
+     * @param dbQuery (Port)
+     * @param nom (String)
+     */
     public ConnectionManager(Port externalSocket, Port securityCheck, Port dbQuery, String nom) {
         super(nom);
         this.externalSocket = externalSocket;

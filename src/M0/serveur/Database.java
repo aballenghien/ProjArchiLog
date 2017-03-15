@@ -5,14 +5,14 @@
  */
 package M0.serveur;
 
-import M0.Colonne;
+import M0.basededonnees.Colonne;
 import M0.Composant;
-import M0.Observable;
-import M0.Observateur;
+import M0.communication.Observable;
+import M0.communication.Observateur;
 import M0.Port;
-import M0.Reponse;
-import M0.Requete;
-import M0.Table;
+import M0.communication.Reponse;
+import M0.communication.Requete;
+import M0.basededonnees.Table;
 import java.util.ArrayList;
 
 /**
@@ -78,44 +78,42 @@ public class Database extends Composant {
         this.securityManagement = securityManagement;
     }
     
+    /**
+     * Génération de deux tables pour les base de données
+     */
     private void genererTables(){
         this.lstTables = new ArrayList<>();
         Table user = new Table();
         user.setNom("user");
-        user.setLstColonnes(new ArrayList<Colonne>());
         
         Colonne nom = new Colonne();
         nom.setNom("nom");
-        nom.setLstValeurs(new ArrayList<>());
-        nom.getLstValeurs().add("root");
-        nom.getLstValeurs().add("audrey");
+        nom.addValeur("root");
+        nom.addValeur("audrey");
         
         Colonne mdp = new Colonne();
         mdp.setNom("mdp");
-        mdp.setLstValeurs(new ArrayList<>());
-        mdp.getLstValeurs().add("audrey");
+        mdp.addValeur("root");
+        mdp.addValeur("audrey");
         
         user.getLstColonnes().add(nom);
         user.getLstColonnes().add(mdp);
         
         Table t1 = new Table();
         t1.setNom("t1");
-        t1.setLstColonnes(new ArrayList<Colonne>());
         
         Colonne c1 = new Colonne();
         c1.setNom("c1");
-        c1.setLstValeurs(new ArrayList());
-        c1.getLstValeurs().add("v1");
-        c1.getLstValeurs().add("v2");
+        c1.addValeur("v1");
+        c1.addValeur("v2");
         
         Colonne c2 = new Colonne();
         c2.setNom("c2");
-        c2.setLstValeurs(new ArrayList<>());
-        c2.getLstValeurs().add("v21");
-        c2.getLstValeurs().add("v22");
+        c2.addValeur("v21");
+        c2.addValeur("v22");
         
-        t1.getLstColonnes().add(c1);
-        t1.getLstColonnes().add(c2);
+        t1.addColonne(c1);
+        t1.addColonne(c2);
         
         this.lstTables.add(user);
         this.lstTables.add(t1);

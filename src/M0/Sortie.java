@@ -6,8 +6,8 @@ package M0;
  */
 
 /**
- *
- * @author Audrey
+ * Un sortie a un nom, elle peut être un port ou un rôle
+ * @author Audrey, Bertrand
  */
 public abstract class Sortie {
     

@@ -7,7 +7,7 @@ package M0;
 
 /**
  *
- * @author Audrey
+ * @author Audrey, Bertrand
  */
 public class Propriete {
     

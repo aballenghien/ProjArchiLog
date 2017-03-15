@@ -1,14 +1,20 @@
 package M0;
 
-import M0.ElementArchitectural;
-import M0.Observable;
-import M0.Observateur;
+
+import M0.communication.*;
 
 
-
+/**
+ * Fait la connection entre deux élements
+ * @author Audrey, Bertrand
+ */
 public abstract class Liaison extends ElementArchitectural implements Observable{
 	
 
+    /**
+     * 
+     * @param nom (String)
+     */
     public Liaison(String nom) {
         super(nom);
     }
@@ -16,11 +22,18 @@ public abstract class Liaison extends ElementArchitectural implements Observable
     
     
 
+    /**
+     * met à jour la configuration
+     * @param o 
+     */
     @Override
     public void DeterminerObservateur(Observateur o) {
         this.setConfiguration(o);
     }
 
+    /**
+     * avertit la configuration d'un changement d'état
+     */
     @Override
     public void notififerObservateur() {
         this.getConfiguration().actualiser(this);

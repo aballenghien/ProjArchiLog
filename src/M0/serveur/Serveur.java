@@ -4,22 +4,21 @@
  */
 package M0.serveur;
 
-import M0.Composant;
-import M0.Configuration;
-import M0.Connecteur;
-import M0.ElementArchitectural;
-import M0.Message;
-import M0.Observable;
-import M0.Observateur;
-import M0.Port;
-import M0.Reponse;
-import M0.Requete;
-import M0.SystemCS;
+import M0.*;
+import M0.communication.*;
 import java.util.ArrayList;
 
 /**
- *
- * @author Audrey
+ * Le serveur est une configuration particulière, il est supervisé par la configuration SystemCS
+ * Il supervise plusieurs éléments architecturaux:
+ * - ConnectionManager
+ * - SecurityManager
+ * - Database
+ * 
+ * Il communique grâce à deux port:
+ * - internalServeur : ainsi il peut envoyer des messages au ConnectionManager
+ * - receiveRequest : par lequel il reçoit le message du client et peut émettre la réponse
+ * @author Audrey, Bertrand
  */
 public class Serveur extends Configuration{
     
@@ -30,12 +29,20 @@ public class Serveur extends Configuration{
     private Port internalServeur;
     
 
+    /**
+     * 
+     * @param connectionManager (ConnectionManager)
+     * @param securityManager (SecurityManagerProjet)
+     * @param database (Database)
+     * @param receiveRequest (Port)
+     * @param internalServeur (Port)
+     * @param nom (String)
+     */
     public Serveur(ConnectionManager connectionManager, SecurityManagerProjet securityManager, Database database, Port receiveRequest, Port internalServeur, String nom) {
         super(nom);
         this.connectionManager = connectionManager;
         this.securityManager = securityManager;
         this.database = database;
-        this.setLstElementsArchitecturaux(new ArrayList<ElementArchitectural>());
         this.getLstElementsArchitecturaux().add (this.connectionManager);
         this.getLstElementsArchitecturaux().add (this.securityManager);
         this.getLstElementsArchitecturaux().add (this.database);
@@ -45,10 +52,18 @@ public class Serveur extends Configuration{
         this.getLstSorties().add(this.internalServeur);
     }   
 
+    /**
+     * 
+     * @return connectionManager (ConnectionManager) 
+     */
     public ConnectionManager getConnectionManager() {
         return connectionManager;
     }
 
+    /**
+     * 
+     * @param connectionManager (ConnectionManager) 
+     */
     public void setConnectionManager(ConnectionManager connectionManager) {
         this.connectionManager = connectionManager;
     }
@@ -86,11 +101,16 @@ public class Serveur extends Configuration{
     }
 
     
-    
+    /**
+     * appeler à chaque fois que la configuration est notifier
+     * @param o 
+     */
     @Override
     public void actualiser(Observable o) {
         
-        
+        /**
+         * La connection manager permet d'authentifier le message puis de l'envoyer à la base de données afin que celle-ci trouve la réponse à la requête
+         */
         if(o instanceof ConnectionManager){
             ConnectionManager cm = (ConnectionManager)o;
             if(cm.getMessage().isAuthentifie()){
@@ -106,6 +126,9 @@ public class Serveur extends Configuration{
             }
         }
         
+        /**
+         * Il authentifie le message en communiquant avec la base de données
+         */
         if(o instanceof SecurityManagerProjet){
             SecurityManagerProjet security = (SecurityManagerProjet) o;
             Message messageRecu = security.getMessage();
@@ -137,6 +160,9 @@ public class Serveur extends Configuration{
             }
         }
         
+        /**
+         * Elle recherche les résultats pour un message préalablement authentifier
+         */
         if(o instanceof Database){
             Database db = (Database) o;
             Message mess = db.getMessage();
@@ -156,6 +182,9 @@ public class Serveur extends Configuration{
             }
         }
         
+        /**
+         * Fait le lien entre les différents composant afin de transmettre les messages et les réponses
+         */
         if(o instanceof Connecteur){
             Connecteur connect = (Connecteur) o;
             if(connect.getReponse() == null){

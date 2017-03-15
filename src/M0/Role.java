@@ -1,6 +1,5 @@
 package M0;
 
-import M0.Attachement;
 
 /*
  * To change this template, choose Tools | Templates
@@ -8,13 +7,19 @@ import M0.Attachement;
  */
 
 /**
- *
- * @author Audrey
+ * Un role est la sortie d'un connecteur ou celle d'un attachment, il permet de relier un connecteur à un attachement
+ * @author Audrey, Bertrand
  */
 public class Role extends Sortie{
     private Attachement attch;
     private Connecteur connect;
 
+    /**
+     * 
+     * @param attch (Attachement)
+     * @param connect (Connecteur)
+     * @param nom (String)
+     */
     public Role(Attachement attch,Connecteur connect, String nom) {
         super(nom);
         this.attch = attch;
