@@ -39,7 +39,7 @@ public class Table {
 
     /**
      * 
-     * @return lstColonnes(ArrayList<Colonne>)
+     * @return lstColonnes(ArrayList Colonne)
      */
     public ArrayList<Colonne> getLstColonnes() {
         return lstColonnes;

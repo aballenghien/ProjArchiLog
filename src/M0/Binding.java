@@ -13,9 +13,9 @@ public class Binding extends Liaison{
 
     /**
      * 
-     * @param nom
-     * @param entree
-     * @param sortie 
+     * @param nom (String)
+     * @param entree (Port)
+     * @param sortie (Port)
      */
     public Binding(String nom, Port entree, Port sortie) {
         super(nom);

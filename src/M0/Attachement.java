@@ -14,7 +14,7 @@ public class Attachement extends Liaison{
 
     /**
      * Constructeur de l'attachement
-     * @param nom 
+     * @param nom (String)
      */
     public Attachement(String nom) {
         super(nom);
@@ -33,7 +33,7 @@ public class Attachement extends Liaison{
 
     /**
      * 
-     * @param port 
+     * @param port (Port)
      */
     public void setPort(Port port) {
         this.port = port;
@@ -49,7 +49,7 @@ public class Attachement extends Liaison{
 
     /**
      * 
-     * @param role 
+     * @param role (Role)
      */
     public void setRole(Role role) {
         this.role = role;

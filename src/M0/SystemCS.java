@@ -10,43 +10,53 @@ import M0.serveur.*;
 import java.util.ArrayList;
 
 /**
- * Le Système client/serveur est une configuration particulière composée d'un client et d'un serveur relié par un connecteur RPC
+ * Le Système lstClients/serveur est une configuration particulière composée d'un lstClients et d'un serveur relié par un connecteur RPC
  * @author Audrey, Bertrand
  */
 public class SystemCS extends Configuration implements Observateur{
-    static SystemCS systemCS = null;
-    private Client client;
+    private ArrayList<Client> lstClients;
     private Serveur serveur;
+    private Connecteur RPC;
     
     
     /**
      * 
-     * @param unClient (Client)
      * @param unServeur (Serveur)
      * @param nom (String)
+     * @param rpc (Connecteur)
      */
-    public SystemCS (Client unClient, Serveur unServeur, String nom){
+    public SystemCS (Serveur unServeur, String nom, Connecteur rpc){
         super(nom);
-        this.client=unClient;
         this.serveur=unServeur;
-        this.getLstElementsArchitecturaux().add(client);
-        this.getLstElementsArchitecturaux().add(serveur);
+        this.RPC = rpc;
+        this.lstClients = new ArrayList<>();
+        this.getLstElementsArchitecturaux().add(this.RPC);
+        this.getLstElementsArchitecturaux().add(this.serveur);
     }
 
     /**
      * 
-     * @return client (Client)
+     * @return lstClients (Client)
      */
-    public Client getClient() {
-        return client;
+    public ArrayList<Client> getLstClients() {
+        return lstClients;
     }
 
+    
+    public Client getClientByNom(String nom){
+        for(Client cl : this.lstClients){
+            if(cl.getNom().equals(nom)){
+                return cl;
+            }
+        }
+        return this.lstClients.get(0);
+    }
     /**
      * 
      * @param client (Client)
      */
-    public void setClient(Client client) {
-        this.client = client;
+    public void addClient(Client client) {
+        this.lstClients.add(client);
     }
 
     /**
@@ -65,10 +75,20 @@ public class SystemCS extends Configuration implements Observateur{
         this.serveur = serveur;
     }
 
+    public Connecteur getRPC() {
+        return RPC;
+    }
+
+    public void setRPC(Connecteur RPC) {
+        this.RPC = RPC;
+    }
+    
+    
+
     /**
      * action réalisée lorsque l'observateur est notifier
      * il transmet le message à l'élement architectural suivant en fonction des sorties et du type de message 
-     * @param o 
+     * @param o (Observable)
      */
     @Override
     public void actualiser(Observable o) {
@@ -99,10 +119,12 @@ public class SystemCS extends Configuration implements Observateur{
          */
         if(o instanceof Connecteur){
             Connecteur connect = (Connecteur) o;
-            if(connect.getReponse() == null){
-                connect.getSortie().getAttch().getPort().getCompo().setMessage(connect.getMessage());
+            Reponse resp = connect.getReponse();
+            Message mess = connect.getMessage();
+            if(resp == null){
+                connect.getSortie().getLstAttch().get(0).getPort().getCompo().setMessage(mess);
             }else{
-                connect.getEntree().getAttch().getPort().getCompo().setReponse(connect.getReponse());
+                connect.getEntree().getAttachByNom(resp.getClient().getSendRequest().getAttch().getNom()).getPort().getCompo().setReponse(resp);
             }
         }
         

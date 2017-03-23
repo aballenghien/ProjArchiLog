@@ -54,8 +54,8 @@ public class Client extends Composant{
      * Le message est mis à jour
      * Si le client fait partie d'un système la configuration en sera informé
      * un composant du system devrait apporter une réponse à cette requête qui est aussitôt retournée
-     * @param message
-     * @return 
+     * @param message (Message)
+     * @return reponse (Reponse)
      */
     public Reponse EnvoyerUneRequete(Message message){
         this.setMessage(message);

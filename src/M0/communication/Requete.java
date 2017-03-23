@@ -48,7 +48,7 @@ public class Requete {
 
     /**
      * 
-     * @return colonnes (ArrayList<String>)
+     * @return colonnes (ArrayList String)
      */
     public ArrayList<String> getColonnes() {
         return colonnes;
@@ -56,7 +56,7 @@ public class Requete {
 
    /**
     * 
-    * @return conditions (ArrayList<String>)
+    * @return conditions (ArrayList String)
     */
     public ArrayList<String> getConditions() {
         return conditions;

@@ -19,7 +19,7 @@ public class Connecteur extends ElementArchitectural implements Observable{
 
     /**
      * construction de l'objet et initialisation des listes
-     * @param nom 
+     * @param nom (String)
      */
     public Connecteur(String nom) {
         super(nom);
@@ -78,7 +78,7 @@ public class Connecteur extends ElementArchitectural implements Observable{
 
     /**
      * met à jour de le message et notifie directement l'observateur
-     * @param message 
+     * @param message (Message)
      */
     public void transmettreMessage(Message message){
         this.setMessage(message);
@@ -87,7 +87,7 @@ public class Connecteur extends ElementArchitectural implements Observable{
     
     /**
      * met à jour la configuration
-     * @param o 
+     * @param o (Observateur)
      */
     @Override
     public void DeterminerObservateur(Observateur o) {

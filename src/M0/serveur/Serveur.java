@@ -103,7 +103,7 @@ public class Serveur extends Configuration{
     
     /**
      * appeler à chaque fois que la configuration est notifier
-     * @param o 
+     * @param o (Observable)
      */
     @Override
     public void actualiser(Observable o) {
@@ -139,7 +139,7 @@ public class Serveur extends Configuration{
                     req.setTable("user");
                     req.addColonne("mdp");
                     req.addCondition("nom="+messageRecu.getUser());
-                    Message messageAuthentification = new Message("root", "root", req);
+                    Message messageAuthentification = new Message("root", "root", req,null);
                     messageAuthentification.setAuthentifie(true);
                     security.getcQuery().getAttch().getRole().getConnect().setMessage(messageAuthentification);
                     security.getcQuery().getAttch().getRole().getConnect().notififerObservateur();
@@ -147,7 +147,7 @@ public class Serveur extends Configuration{
                     if(resp.getColonneValeur()[0][0].equals(messageRecu.getMdp())){
                         messageRecu.setAuthentifie(true);
                         security.getSecurityAut().getAttch().getRole().getConnect().setMessage(messageRecu);
-                        Reponse rep = new Reponse(messageRecu.getUser(), messageRecu.getMdp(), messageRecu.getRequete());
+                        Reponse rep = new Reponse(messageRecu.getUser(), messageRecu.getMdp(), messageRecu.getRequete(), messageRecu.getClient());
                         rep.setAuthentifie(true);
                         security.getSecurityAut().getAttch().getRole().getConnect().setReponse(rep);
                         security.getSecurityAut().getAttch().getRole().getConnect().notififerObservateur();
@@ -188,9 +188,9 @@ public class Serveur extends Configuration{
         if(o instanceof Connecteur){
             Connecteur connect = (Connecteur) o;
             if(connect.getReponse() == null){
-                connect.getSortie().getAttch().getPort().getCompo().setMessage(connect.getMessage());
+                connect.getSortie().getLstAttch().get(0).getPort().getCompo().setMessage(connect.getMessage());
             }else{
-                connect.getEntree().getAttch().getPort().getCompo().setReponse(connect.getReponse());
+                connect.getEntree().getLstAttch().get(0).getPort().getCompo().setReponse(connect.getReponse());
             }
         }
     }

@@ -18,7 +18,7 @@ public abstract class Configuration extends ElementArchitectural implements Obse
 
     /**
      * construit l'objet et initialise les listes
-     * @param nom 
+     * @param nom (String)
      */
     public Configuration(String nom) {
         super(nom);
@@ -27,7 +27,7 @@ public abstract class Configuration extends ElementArchitectural implements Obse
 
     /**
      * retourne la liste des elements architecturaux contenus dans la configuration
-     * @return 
+     * @return lstElementsArchitecturaux (List ElementArchitectural)
      */
     public List<ElementArchitectural> getLstElementsArchitecturaux() {
         return lstElementsArchitecturaux;
@@ -37,7 +37,7 @@ public abstract class Configuration extends ElementArchitectural implements Obse
     /**
      * mise à jour du message
      * avertissement de l'observateur uniquement s'il y en a un
-     * @param message 
+     * @param message (Message)
      */
     @Override
     public void setMessage(Message message){
@@ -50,7 +50,7 @@ public abstract class Configuration extends ElementArchitectural implements Obse
     /**
      * Mise à jour de la réponse
      * Avertissement de l'observateur uniquement s'il y en a un
-     * @param reponse 
+     * @param reponse (Reponse)
      */
     @Override
     public void setReponse(Reponse reponse){
@@ -62,7 +62,7 @@ public abstract class Configuration extends ElementArchitectural implements Obse
 
     /**
      * Mise à jour de l'observateur
-     * @param o 
+     * @param o  (Observateur)
      */
     @Override
     public void DeterminerObservateur(Observateur o) {

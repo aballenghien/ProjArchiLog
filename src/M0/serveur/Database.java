@@ -36,7 +36,7 @@ public class Database extends Composant {
     }
     
     public void repondreRequete(){
-        Reponse rep = new Reponse(this.getMessage().getUser(), this.getMessage().getMdp(), this.getMessage().getRequete());
+        Reponse rep = new Reponse(this.getMessage().getUser(), this.getMessage().getMdp(), this.getMessage().getRequete(), this.getMessage().getClient());
         rep.setAuthentifie(true);
         String [][] resp = new String[1][1];
         if(this.getMessage().getUser().equals("root")){

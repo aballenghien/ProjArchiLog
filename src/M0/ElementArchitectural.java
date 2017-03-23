@@ -20,7 +20,7 @@ public class ElementArchitectural {
 
     /**
      * construit l'objet et instancie les listes
-     * @param nom 
+     * @param nom (String)
      */
     public ElementArchitectural(String nom) {
         this.nom = nom;
@@ -29,7 +29,7 @@ public class ElementArchitectural {
 
     /**
      * 
-     * @return lstSortie (ArrayList<Sortie>)
+     * @return lstSortie (Sortie)
      */
     public ArrayList<Sortie> getLstSorties() {
         return lstSorties;
@@ -97,6 +97,15 @@ public class ElementArchitectural {
      */
     public void setNom(String nom) {
         this.nom = nom;
+    }
+    
+    public Sortie getSortieByNom(String nom){
+        for(Sortie s : this.lstSorties){
+            if(s.getNom().equals(nom)){
+                return s;
+            }
+        }
+        return this.lstSorties.get(0);
     }
     
     

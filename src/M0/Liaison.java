@@ -24,7 +24,7 @@ public abstract class Liaison extends ElementArchitectural implements Observable
 
     /**
      * met à jour la configuration
-     * @param o 
+     * @param o (Observateur)
      */
     @Override
     public void DeterminerObservateur(Observateur o) {

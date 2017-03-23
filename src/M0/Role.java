@@ -1,5 +1,7 @@
 package M0;
 
+import java.util.ArrayList;
+
 
 /*
  * To change this template, choose Tools | Templates
@@ -11,7 +13,7 @@ package M0;
  * @author Audrey, Bertrand
  */
 public class Role extends Sortie{
-    private Attachement attch;
+    private ArrayList<Attachement> lstAttchs;
     private Connecteur connect;
 
     /**
@@ -22,17 +24,27 @@ public class Role extends Sortie{
      */
     public Role(Attachement attch,Connecteur connect, String nom) {
         super(nom);
-        this.attch = attch;
+        this.lstAttchs = new ArrayList<>();
+        this.lstAttchs.add(attch);
         this.connect = connect;
     }   
     
 
-    public Attachement getAttch() {
-        return attch;
+    public ArrayList<Attachement> getLstAttch() {
+        return lstAttchs;
     }
 
-    public void setAttch(Attachement attch) {
-        this.attch = attch;
+    public void addAttch(Attachement attch) {
+        this.lstAttchs.add(attch);
+    }
+    
+    public Attachement getAttachByNom(String nom){
+        for(Attachement a: this.lstAttchs){
+            if(a!=null && a.getNom().equals(nom)){
+                return a;
+            }
+        }
+        return this.lstAttchs.get(0);
     }
 
     public Connecteur getConnect() {

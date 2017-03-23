@@ -4,6 +4,8 @@
  */
 package M0.communication;
 
+import M0.ElementArchitectural;
+import M0.client.Client;
 import java.util.ArrayList;
 
 /**
@@ -19,9 +21,10 @@ public class Reponse extends Message{
      * @param user (String)
      * @param mdp (String)
      * @param requete (Requete)
+     * @param elem (ElementArchitectural)
      */
-    public Reponse( String user, String mdp, Requete requete) {
-        super(user, mdp, requete);
+    public Reponse( String user, String mdp, Requete requete, Client elem) {
+        super(user, mdp, requete, elem);
         this.colonneValeur = new String [0][0];
     }
     

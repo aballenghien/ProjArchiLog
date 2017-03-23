@@ -36,7 +36,7 @@ public class Colonne {
 
     /**
      * 
-     * @return lstValeurs (ArrayList<Object>)
+     * @return lstValeurs (ArrayList Object)
      */
     public ArrayList<Object> getLstValeurs() {
         return lstValeurs;

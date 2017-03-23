@@ -4,6 +4,11 @@
  */
 package M0.communication;
 
+import M0.Composant;
+import M0.Configuration;
+import M0.ElementArchitectural;
+import M0.client.Client;
+
 /**
  * Merssage qui transite dans le système
  * il est composé d'un nom et mot de passe permettant d'authentifier l'utilisateur
@@ -16,6 +21,7 @@ public class Message {
     private String mdp;
     private Requete requete;
     private boolean authentifie;
+    private Client client;
 
     /**
      * 
@@ -23,10 +29,11 @@ public class Message {
      * @param mdp (String)
      * @param requete (Requete)
      */
-    public Message(String user, String mdp, Requete requete) {
+    public Message(String user, String mdp, Requete requete, Client client) {
         this.user = user;
         this.mdp = mdp;
         this.requete = requete;
+        this.client = client;
     }
 
     /**
@@ -92,6 +99,16 @@ public class Message {
     public void setAuthentifie(boolean authentifie) {
         this.authentifie = authentifie;
     }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+    
+    
     
     
     

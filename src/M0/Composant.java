@@ -21,7 +21,7 @@ public abstract class Composant extends ElementArchitectural implements Observab
     
     /**
      * construction de l'object et initialisation des listes
-     * @param nom 
+     * @param nom (String)
      */
     public Composant (String nom){
         super(nom);
@@ -40,7 +40,7 @@ public abstract class Composant extends ElementArchitectural implements Observab
 
     /**
      * A chaque mis à jour du message, l'observateur doit être avertit pour pouvoir transmettre le message
-     * @param message 
+     * @param message (Message)
      */
     @Override
     public void setMessage(Message message){
@@ -50,7 +50,7 @@ public abstract class Composant extends ElementArchitectural implements Observab
     
     /**
      * A chaque mise à jour de la réponse, l'observateur doit être vaertit afin de transmetre la réponse
-     * @param reponse 
+     * @param reponse (Reponse)
      */
      @Override
     public void setReponse(Reponse reponse){
@@ -60,7 +60,7 @@ public abstract class Composant extends ElementArchitectural implements Observab
 
      /**
       * Ajout d'une configuration pour le composant
-      * @param o 
+      * @param o  (Observateur)
       */
     @Override
     public void DeterminerObservateur(Observateur o) {

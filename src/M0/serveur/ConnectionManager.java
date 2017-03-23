@@ -73,6 +73,7 @@ public class ConnectionManager extends Composant{
     /**
      * Vérifie la structure du message reçu
      * @return boolean
+     * @param message (Message)
      */
     public boolean analyserMessage(Message message){
         boolean messageOk = true;
